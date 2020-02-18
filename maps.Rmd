@@ -1,0 +1,24 @@
+---
+title: "maps.Rmd"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidycensus)
+library(tidyverse)
+```
+```{r harris}
+racevars <- c(White = "B02001_002", 
+              Black = "B02001_003", 
+              Asian = "B02001_005",
+              Hispanic = "B03003_003")
+harris <- get_acs(geography = "tract",
+                  variables = racevars, 
+                  year = 2018,
+                  state = "TX",
+                  county = "Harris County",
+                  geometry = TRUE,
+                  summary_var = "B02001_001")
+glimpse(harris)
+```
